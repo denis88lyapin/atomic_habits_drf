@@ -40,3 +40,15 @@ class Habit(models.Model):
     reward = models.TextField(verbose_name='вознаграждение')
     duration = models.DurationField(verbose_name='продолжительность выполнения в минутах')
     is_public = models.BooleanField(default=False, verbose_name='признак публичности')
+
+    def __str__(self):
+        return f'Actin: {self.action}, time: {self.time}, period: {self.periodicity}'
+
+    def habit_text(self):
+        text = f'Я буду {self.action} в {self.time}'
+        text += f' в {self.action}.' if self.action else '.'
+        return text
+
+    class Meta:
+        verbose_name = 'привычка'
+        verbose_name_plural = 'привычки'
