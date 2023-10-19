@@ -1,5 +1,4 @@
-from rest_framework import viewsets
-
+from rest_framework import viewsets, generics
 from habits.models import Habit
 from habits.paginators import HabitsPaginator
 from habits.serializers import HabitSerializer
@@ -8,6 +7,7 @@ from habits.serializers import HabitSerializer
 class HabitViewSet(viewsets.ModelViewSet):
     serializer_class = HabitSerializer
     pagination_class = HabitsPaginator
+
     # permission_classes = []
 
     def perform_create(self, serializer):
@@ -18,3 +18,11 @@ class HabitViewSet(viewsets.ModelViewSet):
             return Habit.objects.all()
         else:
             return Habit.objects.filter(user=self.request.user)
+
+
+class ListPublicHabits(generics.ListAPIView):
+    serializer_class = HabitSerializer
+    pagination_class = HabitsPaginator
+
+    def get_queryset(self):
+        return Habit.objects.filter(is_public=True)
