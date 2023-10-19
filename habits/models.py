@@ -15,7 +15,7 @@ class Habit(models.Model):
     action = models.TextField(verbose_name='действие, которое представляет из себя привычка ')
     is_pleasant = models.BooleanField(default=False, verbose_name='признак приятной привычки')
     related_habit = models.ForeignKey('self', on_delete=models.CASCADE, **NULLABLE, verbose_name='связанная привычка')
-    periodicity = models.SmallIntegerField(verbose_name='периодичность выполнения в днях')
+    periodicity = models.SmallIntegerField(default=1, verbose_name='периодичность выполнения в днях')
     reward = models.TextField(**NULLABLE, verbose_name='вознаграждение')
     duration = models.DurationField(verbose_name='продолжительность выполнения в минутах')
     is_public = models.BooleanField(default=False, verbose_name='признак публичности')
