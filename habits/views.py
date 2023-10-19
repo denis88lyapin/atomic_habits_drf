@@ -1,14 +1,14 @@
 from rest_framework import viewsets, generics
 from habits.models import Habit
 from habits.paginators import HabitsPaginator
+from habits.permissions import IsOwnerOrSuperuser
 from habits.serializers import HabitSerializer
 
 
 class HabitViewSet(viewsets.ModelViewSet):
     serializer_class = HabitSerializer
     pagination_class = HabitsPaginator
-
-    # permission_classes = []
+    permission_classes = [IsOwnerOrSuperuser]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
