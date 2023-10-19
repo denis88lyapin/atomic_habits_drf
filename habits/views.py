@@ -1,11 +1,13 @@
 from rest_framework import viewsets
 
 from habits.models import Habit
+from habits.paginators import HabitsPaginator
 from habits.serializers import HabitSerializer
 
 
 class HabitViewSet(viewsets.ModelViewSet):
     serializer_class = HabitSerializer
+    pagination_class = HabitsPaginator
     # permission_classes = []
 
     def perform_create(self, serializer):
