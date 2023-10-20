@@ -19,7 +19,7 @@ class Habit(models.Model):
     reward = models.TextField(**NULLABLE, verbose_name='вознаграждение')
     duration = models.DurationField(verbose_name='продолжительность выполнения в минутах')
     is_public = models.BooleanField(default=False, verbose_name='признак публичности')
-    las_try = models.DateTimeField(**NULLABLE, verbose_name='дата и время последней отправки')
+    las_try = models.DateTimeField(auto_now_add=True, verbose_name='дата и время последней отправки')
 
     def __str__(self):
         return f'Actin: {self.action}, time: {self.time}, period: {self.periodicity}'
