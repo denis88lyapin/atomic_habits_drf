@@ -8,14 +8,13 @@ from users.serializers import UserSerializer
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+    permission_classes = [IsAuthenticated]
 
-    # permission_classes = [IsAuthenticated]
-
-    # def get_permissions(self):
-    #     if self.action == 'create':
-    #         return [AllowAny]
-    #     else:
-    #         return super().get_permissions()
+    def get_permissions(self):
+        if self.action == 'create':
+            return [AllowAny()]
+        else:
+            return super().get_permissions()
 
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
