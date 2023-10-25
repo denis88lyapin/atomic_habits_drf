@@ -71,7 +71,7 @@ class HabitOthersTestCase(APITestCase):
                     'reward': 'reward',
                     'duration': '00:02:00',
                     'is_public': False,
-                    'date': '2023-10-24'
+                    'date': str(self.habit.date)
                 }
             ]
         )
@@ -105,7 +105,7 @@ class HabitOthersTestCase(APITestCase):
                     'reward': 'reward',
                     'duration': '00:02:00',
                     'is_public': True,
-                    'date': '2023-10-24'
+                    'date': str(self.habit.date)
                 }
             ]
         )
