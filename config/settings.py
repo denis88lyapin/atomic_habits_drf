@@ -145,9 +145,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    # 'DEFAULT_PERMISSION_CLASSES': (
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
 }
 
 SIMPLE_JWT = {
@@ -168,11 +168,11 @@ CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND')
 CELERY_TIMEZONE = "Europe/Moscow"
 CELERY_TASK_TRACK_STARTED = config('CELERY_TASK_TRACK_STARTED') == '1'
 CELERY_TASK_TIME_LIMIT = 30 * 60
-# CELERY_BEAT_SCHEDULE = {
-#     'user_ban': {
-#         'task': 'user_ban',
-#         'schedule': timedelta(minutes=1)
-#     },
-# }
+CELERY_BEAT_SCHEDULE = {
+    'send_tg_message': {
+        'task': 'send_tg_message',
+        'schedule': timedelta(minutes=1)
+    },
+}
 
 TG_BOT_API_KEY = config('TG_BOT_API_KEY')

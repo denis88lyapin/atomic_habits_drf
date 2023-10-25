@@ -9,7 +9,7 @@ class HabitSerializer(serializers.ModelSerializer):
         model = Habit
         fields = (
             'id', 'user', 'place', 'time', 'action', 'is_pleasant', 'related_habit', 'periodicity', 'reward',
-            'duration', 'is_public')
+            'duration', 'is_public', 'date')
         read_only_fields = ('user', 'last_try',)
         validators = [
             RelatedHabitRewardValidator('related_habit', 'reward'),

@@ -24,10 +24,11 @@ class DurationValidator:
 
     def __call__(self, value):
         time_duration = value.get(self.field)
-        if time_duration > timedelta(seconds=120):
-            raise ValidationError(
-                {self.field: ['Время выполнения привычки должно быть не больше 120 секунд!']}
-            )
+        if time_duration:
+            if time_duration > timedelta(seconds=120):
+                raise ValidationError(
+                    {self.field: ['Время выполнения привычки должно быть не больше 120 секунд!']}
+                )
 
 
 class RelatedHabitValidator:
@@ -67,8 +68,9 @@ class PeriodicityValidator:
 
     def __call__(self, value):
         periodicity = value.get(self.field)
-        if periodicity > 7:
-            raise ValidationError(
-                {self.field: [
-                    'Нельзя выполнять привычку реже, чем 1 раз в 7 дней!']}
-            )
+        if periodicity:
+            if periodicity > 7:
+                raise ValidationError(
+                    {self.field: [
+                        'Нельзя выполнять привычку реже, чем 1 раз в 7 дней!']}
+                )
